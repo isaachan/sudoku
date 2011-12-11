@@ -17,5 +17,9 @@ public class RotateStrategy {
 	public int[] rotateColumnGroups() {
 		return null;
 	}
+
+	public int rotateTimes() {
+		return 0;
+	}
 	
 }

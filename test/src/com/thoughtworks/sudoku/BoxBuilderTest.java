@@ -1,11 +1,7 @@
 package com.thoughtworks.sudoku;
 
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -17,15 +13,14 @@ public class BoxBuilderTest {
 		BoxBuilder boxBuilder = new BoxBuilder(box, new FakeRotateStrategy());
 		boxBuilder.rotate();
 		
+		String oneRotation = "rl(0,1)|rl(3,4)|rl(6,7)|rc(0,1)|rc(3,4)|rc(6,7)|" + 
+							 "rl([0,1,2],[3,4,5])|" +
+							 "rc([0,1,2],[3,4,5])|";
 		String boxRotationLog = 
-				"rl(0,1)|rl(3,4)|rl(6,7)|rc(0,1)|rc(3,4)|rc(6,7)|" + 
-		        "rl([0,1,2],[3,4,5])|" +
-				"rc([0,1,2],[3,4,5])|";
+				oneRotation + oneRotation;
 		
 		assertEquals(boxRotationLog, box.log);
 	}
-	
-	
 	
 	class FakeBox extends Box {
 
@@ -62,14 +57,18 @@ public class BoxBuilderTest {
 	class FakeRotateStrategy extends RotateStrategy {
 
 		@Override
-		public int[] rotateLines() {
-			return new int[] {0,1};
+		public int rotateTimes() {
+			return 2;
 		}
 		
+		@Override
+		public int[] rotateLines() {
+			return new int[] {0, 1};
+		}
 
 		@Override
 		public int[] rotateColumns() {
-			return new int[] {0,1};
+			return new int[] {0, 1};
 		}
 
 		@Override

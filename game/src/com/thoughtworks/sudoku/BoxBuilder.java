@@ -11,34 +11,52 @@ public class BoxBuilder {
 	}
 
 	public void rotate() {
-		int[] rotateLines = this.rotateStratage.rotateLines();
-		box.rotateLines(rotateLines[0], rotateLines[1]);
-		
-		rotateLines = this.rotateStratage.rotateLines();
-		box.rotateLines(rotateLines[0] + 3, rotateLines[1] + 3);
-		
-		rotateLines = this.rotateStratage.rotateLines();
-		box.rotateLines(rotateLines[0] + 6, rotateLines[1] + 6);
+		int rotationTimes = this.rotateStratage.rotateTimes();
+		for (int i = 0; i < rotationTimes; i++) {
+			rotateOnce();
+		}
+	}
 
-		int[] rotateColumns = this.rotateStratage.rotateColumns();
-		box.rotateColumns(rotateColumns[0], rotateColumns[1]);
-		
-		rotateColumns = this.rotateStratage.rotateColumns();
-		box.rotateColumns(rotateColumns[0] + 3, rotateColumns[1] + 3);
-		
-		rotateColumns = this.rotateStratage.rotateColumns();
-		box.rotateColumns(rotateColumns[0] + 6, rotateColumns[1] + 6);
-		
-		int[] rotateLineGroups = this.rotateStratage.rotateLineGroups();
-		int seed1 = (rotateLineGroups[0]) * 3;
-		int seed2 = (rotateLineGroups[1]) * 3;
-		box.rotateLines(new int[] {seed1, seed1+1, seed1+2}, new int[] {seed2, seed2+1, seed2+2});
+	private void rotateOnce() {
+		rotateLines();
+		rotateColumns();
+		rotateGroups();
+	}
 
-		int[] rotateColumnGroups = this.rotateStratage.rotateLineGroups();
-		int seed3 = (rotateColumnGroups[0]) * 3;
-		int seed4 = (rotateColumnGroups[1]) * 3;
-		box.rotateColumns(new int[] {seed3, seed3+1, seed3+2}, new int[] {seed4, seed4+1, seed4+2});
+	private void rotateGroups() {
+		rotateLineGroups();
+		rotatColumnGroups();
+	}
 
+	private void rotatColumnGroups() {
+		int[][] rotatedGroupIndies = getRotatedGroupIndies();
+		box.rotateColumns(rotatedGroupIndies[0], rotatedGroupIndies[1]);
+	}
+
+	private void rotateLineGroups() {
+		int[][] rotatedGroupIndies = getRotatedGroupIndies();
+		box.rotateLines(rotatedGroupIndies[0], rotatedGroupIndies[1]);
+	}
+
+	private int[][] getRotatedGroupIndies() {
+		int[] rotateColumnGroups = this.rotateStratage.rotateColumnGroups();
+		int seed1 = (rotateColumnGroups[0]) * 3;
+		int seed2 = (rotateColumnGroups[1]) * 3;
+		return new int[][] {new int[] {seed1, seed1+1, seed1+2}, new int[] {seed2, seed2+1, seed2+2}};
+	}
+	
+	private void rotateColumns() {
+		for (int i = 0; i < 7; i += 3) {
+			int[] rotateColumns = this.rotateStratage.rotateColumns();
+			box.rotateColumns(rotateColumns[0] + i, rotateColumns[1] + i);
+		}
+	}
+
+	private void rotateLines() {
+		for (int i = 0; i < 7; i += 3) {
+			int[] rotateLines = this.rotateStratage.rotateLines();
+			box.rotateLines(rotateLines[0] + i, rotateLines[1] + i);
+		}
 	}
 
 }
