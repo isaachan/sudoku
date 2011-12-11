@@ -28,6 +28,17 @@ public class BoxBuilder {
 		
 		rotateColumns = this.rotateStratage.rotateColumns();
 		box.rotateColumns(rotateColumns[0] + 6, rotateColumns[1] + 6);
+		
+		int[] rotateLineGroups = this.rotateStratage.rotateLineGroups();
+		int seed1 = (rotateLineGroups[0]) * 3;
+		int seed2 = (rotateLineGroups[1]) * 3;
+		box.rotateLines(new int[] {seed1, seed1+1, seed1+2}, new int[] {seed2, seed2+1, seed2+2});
+
+		int[] rotateColumnGroups = this.rotateStratage.rotateLineGroups();
+		int seed3 = (rotateColumnGroups[0]) * 3;
+		int seed4 = (rotateColumnGroups[1]) * 3;
+		box.rotateColumns(new int[] {seed3, seed3+1, seed3+2}, new int[] {seed4, seed4+1, seed4+2});
+
 	}
 
 }

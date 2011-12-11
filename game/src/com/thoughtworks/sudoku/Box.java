@@ -32,7 +32,7 @@ public class Box {
 		}
 	}
 
-	public void roateColumns(int[] columnIndies, int[] otherColumnIndies) {
+	public void rotateColumns(int[] columnIndies, int[] otherColumnIndies) {
 		for (int i = 0; i < columnIndies.length; i++) {
 			rotateColumns(columnIndies[i], otherColumnIndies[i]);
 		}

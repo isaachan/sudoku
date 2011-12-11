@@ -10,4 +10,12 @@ public class RotateStrategy {
 		return null;
 	}
 	
+	public int[] rotateLineGroups() {
+		return null;
+	}
+
+	public int[] rotateColumnGroups() {
+		return null;
+	}
+	
 }

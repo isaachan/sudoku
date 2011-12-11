@@ -55,7 +55,7 @@ public class BoxTest {
 	
 	@Test
 	public void rotate_multiple_columns() {
-		box.roateColumns(new int[] {0, 1, 2}, new int[] {3, 4, 5});
+		box.rotateColumns(new int[] {0, 1, 2}, new int[] {3, 4, 5});
 
 		assertEquals(4, box.getStatus()[0][0]);
 		assertEquals(5, box.getStatus()[0][1]);
