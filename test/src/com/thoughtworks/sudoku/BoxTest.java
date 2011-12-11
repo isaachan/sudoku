@@ -6,11 +6,11 @@ import org.junit.Test;
 
 public class BoxTest {
 
-	private Box box;
+	private Borad box;
 
 	@Before
 	public void initlize() {
-		box = new Box();
+		box = new Borad();
 		box.initlize(new int[][] {
 				{1, 2, 3, 4, 5, 6, 7, 8, 9},
 				{9, 8, 7, 6, 5, 4, 3, 2, 1},
