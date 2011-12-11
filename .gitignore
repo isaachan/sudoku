@@ -1,3 +1,4 @@
 game/bin/*
 game/gen/*
 test/bin/*
+game/*.log
